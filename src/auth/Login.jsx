@@ -1,7 +1,7 @@
 import { faUser } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { useSignInWithEmailAndPassword } from "react-firebase-hooks/auth";
 import { auth } from "../firebase.init";
@@ -10,6 +10,8 @@ import toast from "react-hot-toast";
 import Loading from "../Shared/Loading";
 
 const Login = () => {
+  const location = useLocation();
+  let from = location.state?.from?.pathname || "/";
   // useCreateWith email and pass
   const [signInWithEmailAndPassword, user, loading, error] =
     useSignInWithEmailAndPassword(auth);
@@ -42,7 +44,7 @@ const Login = () => {
   }
   //if user
   if (user) {
-    navigate("/");
+    navigate(from);
     toast.success("Successfully Logged in!");
   }
 

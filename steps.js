@@ -1,7 +1,6 @@
 /* 
-1. name 
-2. phone
-3.linkedin
-4.education
-5. about yourself
+1.user
+2.company
+3.job post
+4.applicant 
 */

@@ -1,7 +1,27 @@
 import React from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase.init";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 const PostAJob = () => {
+  const navigate = useNavigate();
+
+  const [user] = useAuthState(auth);
+  const [account, setAccount] = useState({});
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(
+        `http://localhost:5000/account/${user?.email}`
+      );
+
+      setAccount(data);
+    })();
+  }, [user?.email]);
   //hook form
   const {
     register,
@@ -9,12 +29,25 @@ const PostAJob = () => {
     formState: { errors },
     handleSubmit,
   } = useForm({ mode: onchange });
+  const date = new Date().toISOString().slice(0, 10);
 
   // form handle
   const onSubmit = async (data) => {
-    console.log(data);
-
-    reset();
+    const newJob = {
+      ...data,
+      date: date,
+      email: user?.email,
+      link: account?.website,
+      company: account?.company,
+    };
+    (async function () {
+      const { data } = await axios.post("http://localhost:5000/jobs", newJob);
+      if (data.insertedId) {
+        toast.success("Successfully updated!");
+        navigate("/");
+        reset();
+      }
+    })();
   };
   return (
     <div className="flex justify-center items-center ">

@@ -1,7 +1,15 @@
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useForm } from "react-hook-form";
+import { auth } from "../firebase.init";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router";
 
 const CompanyAccount = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+
   //hook form
   const {
     register,
@@ -13,6 +21,23 @@ const CompanyAccount = () => {
   // form handle
   const onSubmit = async (data) => {
     console.log(data);
+    const newCompany = {
+      ...data,
+      email: user?.email,
+      account_type: "company",
+    };
+    // post applicant to db
+    (async function () {
+      const { data } = await axios.post(
+        "http://localhost:5000/account",
+        newCompany
+      );
+      console.log(data);
+      if (data.insertedId) {
+        toast.success("Successfully updated!");
+        navigate("/");
+      }
+    })();
 
     reset();
   };

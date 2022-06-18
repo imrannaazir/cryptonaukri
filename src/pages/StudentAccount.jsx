@@ -1,7 +1,14 @@
+import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
+import toast from "react-hot-toast";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase.init";
+import { useNavigate } from "react-router";
 
 const StudentAccount = () => {
+  const [user] = useAuthState(auth);
+  const navigate = useNavigate();
   //hook form
   const {
     register,
@@ -12,8 +19,23 @@ const StudentAccount = () => {
 
   // form handle
   const onSubmit = async (data) => {
-    console.log(data);
-
+    const newApplicant = {
+      ...data,
+      email: user?.email,
+      account_type: "applicant",
+    };
+    // post applicant to db
+    (async function () {
+      const { data } = await axios.post(
+        "http://localhost:5000/account",
+        newApplicant
+      );
+      console.log(data);
+      if (data.insertedId) {
+        toast.success("Successfully updated!");
+        navigate("/");
+      }
+    })();
     reset();
   };
   return (

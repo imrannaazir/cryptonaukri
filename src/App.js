@@ -24,14 +24,17 @@ const App = () => {
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
         <Route path='/register/:id' element={<Register />} />
-        <Route path='/post-job' element={<PostAJob />} />
-        <Route path='/find-job' element={<FindAJob />} />
-        <Route path='/job-details' element={<JobDetails />} />
-        <Route path='/applications' element={<Applications />} />
-        <Route path='/applicants' element={<Applicants />} />
+
+
+        <Route path='/post-job' element={<RequiredAuth><PostAJob /></RequiredAuth>} />
+        <Route path='/find-job' element={<RequiredAuth><FindAJob /></RequiredAuth>} />
+        <Route path='/job-details' element={<RequiredAuth><JobDetails /></RequiredAuth>} />
+        <Route path='/applications' element={<RequiredAuth><Applications /></RequiredAuth>} />
+        <Route path='/applicants' element={<RequiredAuth><Applicants /></RequiredAuth>} />
         {/* required for login or signup */}
         <Route path='/student-account' element={<RequiredAuth><StudentAccount /></RequiredAuth>} />
         <Route path='/company-account' element={<RequiredAuth><CompanyAccount /></RequiredAuth>} />
+
       </Routes>
     </div>
   );
