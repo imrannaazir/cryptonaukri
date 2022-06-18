@@ -1,7 +1,11 @@
+import { signOut } from "firebase/auth";
 import React from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { Link } from "react-router-dom";
+import { auth } from "../firebase.init";
 
 const Navbar = () => {
+  const [user] = useAuthState(auth);
   return (
     <div class="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0">
       <div class="navbar-start">
@@ -55,29 +59,51 @@ const Navbar = () => {
         </ul>
       </div>
       <div class="navbar-end flex gap-4">
-        <Link to="/login" className="text-xl">
-          Login
-        </Link>
+        {user ? (
+          <div class="dropdown dropdown-hover dropdown-end">
+            <label tabindex="0" class="">
+              <div class="avatar placeholder">
+                <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
+                  <span class="text-3xl">K</span>
+                </div>
+              </div>
+            </label>
+            <ul
+              tabindex="0"
+              class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
+            >
+              <li>
+                <button onClick={() => signOut(auth)}>Logout</button>
+              </li>
+            </ul>
+          </div>
+        ) : (
+          <>
+            <Link to="/login" className="text-xl">
+              Login
+            </Link>
 
-        <div class="dropdown dropdown-hover dropdown-end">
-          <label
-            tabindex="0"
-            class="text-xl text-white bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md rounded-bl-3xl"
-          >
-            Register
-          </label>
-          <ul
-            tabindex="0"
-            class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
-          >
-            <li>
-              <Link to="/register/student">Student</Link>
-            </li>
-            <li>
-              <Link to="/register/company">Company</Link>
-            </li>
-          </ul>
-        </div>
+            <div class="dropdown dropdown-hover dropdown-end">
+              <label
+                tabindex="0"
+                class="text-xl text-white bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md rounded-bl-3xl"
+              >
+                Register
+              </label>
+              <ul
+                tabindex="0"
+                class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
+              >
+                <li>
+                  <Link to="/register/student">Student</Link>
+                </li>
+                <li>
+                  <Link to="/register/company">Company</Link>
+                </li>
+              </ul>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );

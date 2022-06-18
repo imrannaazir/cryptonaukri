@@ -9,11 +9,14 @@ import Applications from './pages/Applications';
 import Applicants from './pages/Applicants';
 import FindAJob from './pages/FindAJob';
 import JobDetails from './pages/JobDetails';
+import { Toaster } from 'react-hot-toast';
+
 
 const App = () => {
   return (
     <div>
       <Navbar />
+      <Toaster />
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/login' element={<Login />} />
