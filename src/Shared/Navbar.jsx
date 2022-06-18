@@ -27,30 +27,30 @@ const Navbar = () => {
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             <li>
-              <a>Item 1</a>
+              <Link to="/applications">Applications</Link>
             </li>
 
             <li>
-              <a>Item 3</a>
+              <Link to="/applicants">Applicants</Link>
             </li>
           </ul>
         </div>
-        <a class="btn btn-ghost normal-case text-xl">
+        <Link to="/" class="btn btn-ghost normal-case text-xl">
           <img
             className="h-10"
             src="https://i.ibb.co/kQmGYgB/crypto-final-logo-png-14-1.png"
             alt=""
           />
-        </a>
+        </Link>
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
           <li>
-            <a>Item 1</a>
+            <Link to="/applications">Applications</Link>
           </li>
 
           <li>
-            <a>Item 3</a>
+            <Link to="/applicants">Applicants</Link>
           </li>
         </ul>
       </div>
@@ -71,10 +71,10 @@ const Navbar = () => {
             class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
           >
             <li>
-              <a>For Student</a>
+              <Link to="/register/student">Student</Link>
             </li>
             <li>
-              <a>For Company</a>
+              <Link to="/register/company">Company</Link>
             </li>
           </ul>
         </div>

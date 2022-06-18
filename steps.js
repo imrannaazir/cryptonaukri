@@ -1,5 +1,7 @@
 /* 
-1.crate account for 1. Applicante 2. Company
-2. sign up login
-3
+1. job title
+2. salary
+3. About company
+4. About
+5. Required skills
 */

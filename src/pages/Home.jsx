@@ -1,5 +1,6 @@
 import React from "react";
 import flag from "../assets/india.svg";
+import { Link } from "react-router-dom";
 
 const Home = () => {
   return (
@@ -15,12 +16,18 @@ const Home = () => {
             crypto job website
           </p>
           <div className="flex gap-8">
-            <button class="btn bg-gradient-to-r from-primary to-secondary border-0 text-white rotate-3 capitalize text-lg hover:scale-110 rounded-md">
+            <Link
+              to="find-job"
+              class="btn bg-gradient-to-r from-primary to-secondary border-0 text-white rotate-3 capitalize text-lg hover:scale-110 rounded-md"
+            >
               Find a Job
-            </button>
-            <button class="btn  btn-outline rotate-3 capitalize text-lg transform duration-200 hover:bg-transparent hover:text-white hover:scale-110 rounded-md ">
+            </Link>
+            <Link
+              to="/post-job"
+              class="btn  btn-outline rotate-3 capitalize text-lg transform duration-200 hover:bg-transparent hover:text-white hover:scale-110 rounded-md "
+            >
               Post a Job
-            </button>
+            </Link>
           </div>
         </div>
         <img
