@@ -1,7 +1,7 @@
 import React from "react";
 import { useForm } from "react-hook-form";
 
-const StudentAccount = () => {
+const CompanyAccount = () => {
   //hook form
   const {
     register,
@@ -18,50 +18,49 @@ const StudentAccount = () => {
   };
   return (
     <div className="flex flex-col items-start p-8 justify-start mt-24 lg:mx-[10%] bg-base-300">
-      <p className="text-2xl mb-6">Update your profile</p>
+      <p className="text-2xl mb-6">Update Company Info</p>
       {/* form started */}
       <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
         {/* name */}
-        <p className="text-xl">Name</p>
         <div className="lg:flex gap-4">
-          {/* first name */}
+          {/* company  name */}
           <div className="form-control ">
             <input
-              {...register("first_name", {
+              {...register("company", {
                 required: {
                   value: true,
-                  message: "first name is required",
+                  message: "company name is required",
                 },
               })}
               type="text"
-              placeholder="Enter your first name"
+              placeholder="Enter company name"
               className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
             />
             <label className="label">
-              {errors.first_name?.type === "required" && (
+              {errors.company?.type === "required" && (
                 <span className="label-text-alt text-error">
-                  {errors.first_name.message}
+                  {errors.company.message}
                 </span>
               )}
             </label>
           </div>
-          {/* last name */}
+          {/* address  */}
           <div className="form-control ">
             <input
-              {...register("last_name", {
+              {...register("address", {
                 required: {
                   value: true,
-                  message: "last name is required",
+                  message: "address is required",
                 },
               })}
               type="text"
-              placeholder="Enter your last name"
+              placeholder="Enter company address"
               className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
             />
             <label className="label">
-              {errors.last_name?.type === "required" && (
+              {errors.address?.type === "required" && (
                 <span className="label-text-alt text-error">
-                  {errors.last_name.message}
+                  {errors.address.message}
                 </span>
               )}
             </label>
@@ -69,19 +68,40 @@ const StudentAccount = () => {
         </div>
 
         {/* profile link */}
-        <p className="text-xl">Profile Link</p>
+        <p className="text-xl">Link</p>
         <div className="lg:flex gap-4">
           {/* LinkedIn */}
+          <div className="form-control ">
+            <input
+              {...register("website", {
+                required: {
+                  value: true,
+                  message: "website url is required",
+                },
+              })}
+              type="text"
+              placeholder="Enter website url"
+              className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
+            />
+            <label className="label">
+              {errors.website?.type === "required" && (
+                <span className="label-text-alt text-error">
+                  {errors.website.message}
+                </span>
+              )}
+            </label>
+          </div>
+          {/* phone */}
           <div className="form-control ">
             <input
               {...register("linkedin", {
                 required: {
                   value: true,
-                  message: "LinkedIn url is required",
+                  message: "linkedin url is required",
                 },
               })}
               type="text"
-              placeholder="Enter your LinkedIn url"
+              placeholder="Enter linkedin url"
               className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
             />
             <label className="label">
@@ -92,71 +112,50 @@ const StudentAccount = () => {
               )}
             </label>
           </div>
-          {/* phone */}
-          <div className="form-control ">
-            <input
-              {...register("phone", {
-                required: {
-                  value: true,
-                  message: "phone number is required",
-                },
-              })}
-              type="text"
-              placeholder="Enter your phone number"
-              className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
-            />
-            <label className="label">
-              {errors.phone?.type === "required" && (
-                <span className="label-text-alt text-error">
-                  {errors.phone.message}
-                </span>
-              )}
-            </label>
-          </div>
         </div>
 
         {/*  */}
-        {/* Education */}
-        <p className="text-xl">Education</p>
+        {/* company info */}
+        <p className="text-xl">More Info</p>
         <div className="lg:flex gap-4">
-          {/* LinkedIn */}
+          {/* employees */}
           <div className="form-control ">
             <input
-              {...register("subject", {
+              {...register("employees", {
                 required: {
                   value: true,
-                  message: "subject is required",
+                  message: "employees is required",
                 },
               })}
               type="text"
-              placeholder="Enter your subject"
+              placeholder="number of employees"
               className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
             />
             <label className="label">
-              {errors.subject?.type === "required" && (
+              {errors.employees?.type === "required" && (
                 <span className="label-text-alt text-error">
-                  {errors.subject.message}
+                  {errors.employees.message}
                 </span>
               )}
             </label>
           </div>
-          {/* github link */}
+          {/*  company type */}
           <div className="form-control ">
             <input
-              {...register("university", {
+              {...register("company_type", {
                 required: {
                   value: true,
-                  message: "university is required",
+                  message: "company type is required",
                 },
               })}
               type="text"
-              placeholder="Enter your university"
+              placeholder="Enter company type"
               className="input input-bordered w-full max-w-xs lg:w-[350px] rounded-sm"
             />
             <label className="label">
-              {errors.university?.type === "required" && (
+              {errors.company_type?.type === "required" && (
                 <span className="label-text-alt text-error">
-                  {errors.university.message}
+                  {errors.company_type.message}
                 </span>
               )}
             </label>
@@ -165,7 +164,7 @@ const StudentAccount = () => {
 
         {/*  */}
         <div className="form-control ">
-          <p className="text-xl">About yourself</p>
+          <p className="text-xl">About company</p>
           <textarea
             {...register("about", {
               required: {
@@ -174,7 +173,7 @@ const StudentAccount = () => {
               },
             })}
             type="text"
-            placeholder="Tell about yourself"
+            placeholder="Tell about company"
             className="input input-bordered w-full h-24 rounded-sm py-2 "
           />
           <label className="label">
@@ -194,4 +193,4 @@ const StudentAccount = () => {
   );
 };
 
-export default StudentAccount;
+export default CompanyAccount;
