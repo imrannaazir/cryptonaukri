@@ -7,7 +7,7 @@ import { auth } from "../firebase.init";
 const Navbar = () => {
   const [user] = useAuthState(auth);
   return (
-    <div class="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0">
+    <div class="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0 z-50">
       <div class="navbar-start">
         <div class="dropdown">
           <label tabindex="0" class="btn btn-ghost lg:hidden">

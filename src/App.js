@@ -12,6 +12,7 @@ import JobDetails from './pages/JobDetails';
 import { Toaster } from 'react-hot-toast';
 import StudentAccount from './pages/StudentAccount';
 import CompanyAccount from './pages/CompanyAccount';
+import RequiredAuth from './auth/RequiredAuth';
 
 
 const App = () => {
@@ -28,8 +29,9 @@ const App = () => {
         <Route path='/job-details' element={<JobDetails />} />
         <Route path='/applications' element={<Applications />} />
         <Route path='/applicants' element={<Applicants />} />
-        <Route path='/student-account' element={<StudentAccount />} />
-        <Route path='/company-account' element={<CompanyAccount />} />
+        {/* required for login or signup */}
+        <Route path='/student-account' element={<RequiredAuth><StudentAccount /></RequiredAuth>} />
+        <Route path='/company-account' element={<RequiredAuth><CompanyAccount /></RequiredAuth>} />
       </Routes>
     </div>
   );
