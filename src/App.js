@@ -10,6 +10,7 @@ import Applicants from './pages/Applicants';
 import FindAJob from './pages/FindAJob';
 import JobDetails from './pages/JobDetails';
 import { Toaster } from 'react-hot-toast';
+import StudentAccount from './pages/StudentAccount';
 
 
 const App = () => {
@@ -26,6 +27,7 @@ const App = () => {
         <Route path='/job-details' element={<JobDetails />} />
         <Route path='/applications' element={<Applications />} />
         <Route path='/applicants' element={<Applicants />} />
+        <Route path='/student-account' element={<StudentAccount />} />
       </Routes>
     </div>
   );

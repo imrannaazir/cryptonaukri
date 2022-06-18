@@ -40,7 +40,7 @@ const Register = () => {
     toast.error(eError.message);
   }
   if (eUser) {
-    navigate("/");
+    navigate("/" + isRadioSelected + "-account");
   }
 
   return (

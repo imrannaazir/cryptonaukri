@@ -1,7 +1,7 @@
 /* 
-1. job title
-2. salary
-3. About company
-4. About
-5. Required skills
+1. name 
+2. phone
+3.linkedin
+4.education
+5. about yourself
 */
