@@ -28,7 +28,7 @@ const App = () => {
 
         <Route path='/post-job' element={<RequiredAuth><PostAJob /></RequiredAuth>} />
         <Route path='/find-job' element={<RequiredAuth><FindAJob /></RequiredAuth>} />
-        <Route path='/job-details' element={<RequiredAuth><JobDetails /></RequiredAuth>} />
+        <Route path='/job-details/:id' element={<RequiredAuth><JobDetails /></RequiredAuth>} />
         <Route path='/applications' element={<RequiredAuth><Applications /></RequiredAuth>} />
         <Route path='/applicants' element={<RequiredAuth><Applicants /></RequiredAuth>} />
         {/* required for login or signup */}
