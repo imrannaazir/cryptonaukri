@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import flag from "../assets/india.svg";
 import { Link } from "react-router-dom";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase.init";
+import axios from "axios";
 
 const Home = () => {
+  const [user] = useAuthState(auth);
+  const [account, setAccount] = useState({});
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(
+        `http://localhost:5000/account/${user?.email}`
+      );
+
+      setAccount(data);
+    })();
+  }, [user?.email]);
+  console.log(account?.account_type);
   return (
     <div class=" bg-base-200">
       <div class="min-h-screen flex justify-between items-center lg:px-[10%]">
@@ -16,23 +31,27 @@ const Home = () => {
             crypto job website
           </p>
           <div className="flex gap-8">
-            <Link
-              to="find-job"
-              class="btn bg-gradient-to-r from-primary to-secondary border-0 text-white rotate-3 capitalize text-lg hover:scale-110 rounded-md"
-            >
-              Find a Job
-            </Link>
-            <Link
-              to="/post-job"
-              class="btn  btn-outline rotate-3 capitalize text-lg transform duration-200 hover:bg-transparent hover:text-white hover:scale-110 rounded-md "
-            >
-              Post a Job
-            </Link>
+            {account?.account_type === "company" ? (
+              <Link
+                to="/post-job"
+                class="btn  btn-outline rotate-3 capitalize text-lg transform duration-200 hover:bg-transparent hover:text-white hover:scale-110 rounded-md "
+              >
+                Post a Job
+              </Link>
+            ) : (
+              <Link
+                to="/find-job"
+                class="btn bg-gradient-to-r from-primary to-secondary border-0 text-white rotate-3 capitalize text-lg hover:scale-110 rounded-md"
+              >
+                Find a Job
+              </Link>
+            )}
           </div>
         </div>
         <img
           src="https://iili.io/VkREcx.md.png"
           class="max-w-sm rounded-lg transform duration-200 hover:scale-110"
+          alt=""
         />
       </div>
     </div>

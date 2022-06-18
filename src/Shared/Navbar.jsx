@@ -1,11 +1,25 @@
 import { signOut } from "firebase/auth";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth } from "../firebase.init";
+import axios from "axios";
 
 const Navbar = () => {
   const [user] = useAuthState(auth);
+  const navigate = useNavigate();
+  const [account, setAccount] = useState({});
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(
+        `http://localhost:5000/account/${user?.email}`
+      );
+
+      setAccount(data);
+    })();
+  }, [user?.email]);
+  console.log(account?.account_type);
+
   return (
     <div class="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0 z-50">
       <div class="navbar-start">
@@ -30,13 +44,20 @@ const Navbar = () => {
             tabindex="0"
             class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            <li>
-              <Link to="/applications">Applications</Link>
-            </li>
-
-            <li>
-              <Link to="/applicants">Applicants</Link>
-            </li>
+            {account?.account_type === "applicants" ? (
+              <li>
+                <Link to="/find-job">Find Job</Link>
+              </li>
+            ) : (
+              <>
+                <li>
+                  <Link to="/post-job">Post Job</Link>
+                </li>
+                <li>
+                  <Link to="/applicants">Applicants</Link>
+                </li>
+              </>
+            )}
           </ul>
         </div>
         <Link to="/" class="btn btn-ghost normal-case text-xl">
@@ -49,13 +70,20 @@ const Navbar = () => {
       </div>
       <div class="navbar-center hidden lg:flex">
         <ul class="menu menu-horizontal p-0">
-          <li>
-            <Link to="/applications">Applications</Link>
-          </li>
-
-          <li>
-            <Link to="/applicants">Applicants</Link>
-          </li>
+          {account?.account_type === "company" ? (
+            <>
+              <li>
+                <Link to="/post-job">Post Job</Link>
+              </li>
+              <li>
+                <Link to="/applicants">Applicants</Link>
+              </li>
+            </>
+          ) : (
+            <li>
+              <Link to="/find-job">Find Job</Link>
+            </li>
+          )}
         </ul>
       </div>
       <div class="navbar-end flex gap-4">
@@ -64,7 +92,10 @@ const Navbar = () => {
             <label tabindex="0" class="">
               <div class="avatar placeholder">
                 <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
-                  <span class="text-3xl">K</span>
+                  <span class="text-3xl">
+                    {account?.company?.slice(0, 1) ||
+                      account?.first_name?.slice(0, 1)}
+                  </span>
                 </div>
               </div>
             </label>
@@ -73,7 +104,14 @@ const Navbar = () => {
               class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
             >
               <li>
-                <button onClick={() => signOut(auth)}>Logout</button>
+                <button
+                  onClick={() => {
+                    navigate("/");
+                    signOut(auth);
+                  }}
+                >
+                  Logout
+                </button>
               </li>
             </ul>
           </div>
