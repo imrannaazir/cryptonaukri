@@ -1,31 +1,37 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "../firebase.init";
+import axios from "axios";
+import Applicant from "./Applicant";
 
 const Applicants = () => {
+  const [user] = useAuthState(auth);
+  const [account, setAccount] = useState({});
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(
+        `http://localhost:5000/account/${user?.email}`
+      );
+
+      setAccount(data);
+    })();
+  }, [user?.email]);
+
+  const url = `http://localhost:5000/applications/${account?.website}`;
+  const [applicants, setApplicants] = useState([]);
+  useEffect(() => {
+    (async function () {
+      const { data } = await axios.get(url);
+      setApplicants(data);
+    })();
+  }, [url]);
   return (
     <div className="mt-24 lg:mx-[10%]">
-      <p>Applicants</p>
-      <div class="card bg-base-300 shadow-3xl">
-        <div class="card-body">
-          <div class="card-actions justify-end">
-            <button class="btn btn-square btn-sm">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                class="h-6 w-6"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-          </div>
-          <p>We are using cookies for no reason.</p>
-        </div>
+      <p className="text-4xl mb-6">Applicants</p>
+      <div>
+        {applicants.map((applicant, i) => (
+          <Applicant key={i} applicant={applicant} />
+        ))}
       </div>
     </div>
   );

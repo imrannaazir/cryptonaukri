@@ -53,7 +53,7 @@ const JobDetails = () => {
     const applicant = {
       ...rest,
       ...data,
-      company: company,
+      website_link: link,
       job_title: job_title,
     };
     (async function () {

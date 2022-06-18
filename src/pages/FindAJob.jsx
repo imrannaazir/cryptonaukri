@@ -1,11 +1,12 @@
 import axios from "axios";
 import React from "react";
+import { useEffect } from "react";
 import { useState } from "react";
 import SingleJob from "./SingleJob";
 
 const FindAJob = () => {
   const [jobs, setJobs] = useState([]);
-  useState(() => {
+  useEffect(() => {
     (async function () {
       const { data } = await axios.get("http://localhost:5000/jobs");
       setJobs(data);
