@@ -20,10 +20,10 @@ const Home = () => {
   console.log(account?.account_type);
   return (
     <div className=" bg-base-200">
-      <div className="min-h-screen flex justify-between items-center lg:px-[10%]">
+      <div className="lg:min-h-screen flex flex-col lg:flex-row mt-24  justify-between items-center px-[10%]">
         <div>
-          <h1 className="text-6xl ">Towards the</h1>
-          <h1 className="text-transparent text-8xl bg-clip-text bg-gradient-to-b from-primary to-secondary transform duration-200 hover:scale-105">
+          <h1 className=" text-3xl lg:text-6xl ">Towards the</h1>
+          <h1 className="text-transparent text-4xl lg:text-8xl bg-clip-text bg-gradient-to-b from-primary to-secondary transform duration-200 hover:scale-105">
             Revolution
           </h1>
           <p className="py-6 flex gap-2 text-lg font-bold">

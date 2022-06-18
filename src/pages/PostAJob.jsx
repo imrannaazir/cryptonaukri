@@ -165,7 +165,7 @@ const PostAJob = () => {
         </form>
       </div>
       <img
-        className="w-[600px] h-[600px]"
+        className="w-[600px] h-[600px] hidden lg:block"
         src="https://i.ibb.co/MGxCzQb/flame-remote-work-1.png"
         alt=""
       />

@@ -48,7 +48,7 @@ const Register = () => {
       <div className="min-h-screen flex justify-center items-center lg:px-[10%]">
         <img
           src="https://iili.io/Vk565Q.md.png"
-          className=" rounded-lg "
+          className=" rounded-lg hidden lg:block"
           alt=""
         />
         <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">

@@ -44,11 +44,7 @@ const Navbar = () => {
             tabIndex="0"
             className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
-            {account?.account_type === "applicants" ? (
-              <li>
-                <Link to="/find-job">Find Job</Link>
-              </li>
-            ) : (
+            {account?.account_type === "company" ? (
               <>
                 <li>
                   <Link to="/post-job">Post Job</Link>
@@ -57,6 +53,10 @@ const Navbar = () => {
                   <Link to="/applicants">Applicants</Link>
                 </li>
               </>
+            ) : (
+              <li>
+                <Link to="/find-job">Find Job</Link>
+              </li>
             )}
           </ul>
         </div>
