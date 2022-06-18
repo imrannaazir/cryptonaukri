@@ -1,27 +1,24 @@
+import axios from "axios";
 import React from "react";
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import SingleJob from "./SingleJob";
 
 const FindAJob = () => {
+  const [jobs, setJobs] = useState([]);
+  useState(() => {
+    (async function () {
+      const { data } = await axios.get("http://localhost:5000/jobs");
+      setJobs(data);
+    })();
+  }, []);
+  console.log(jobs);
   return (
-    <div className="mt-24 lg:mx-[10%]">
-      <p>Discover Job</p>
-      <div class="card lg:card-side bg-base-300 shadow-xl">
-        <figure>
-          <img
-            className="h-52"
-            src="https://www.cryptonaukri.com/img/internship.png"
-            alt="Album"
-          />
-        </figure>
-        <div class="card-body">
-          <h2 class="card-title">New album is released!</h2>
-          <p>Click the button to listen on Spotiwhy app.</p>
-          <div class="card-actions justify-end">
-            <Link to="/job-details" class="btn btn-primary">
-              Listen
-            </Link>
-          </div>
-        </div>
+    <div className="my-24 lg:mx-[10%]">
+      <p className="text-3xl  mb-6">Discover Job</p>
+      <div className="flex flex-col gap-6">
+        {jobs.map((job, i) => (
+          <SingleJob key={i} job={job} />
+        ))}
       </div>
     </div>
   );
