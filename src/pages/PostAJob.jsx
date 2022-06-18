@@ -16,7 +16,7 @@ const PostAJob = () => {
   useEffect(() => {
     (async function () {
       const { data } = await axios.get(
-        `http://localhost:5000/account/${user?.email}`
+        `https://shrouded-taiga-82272.herokuapp.com/account/${user?.email}`
       );
 
       setAccount(data);
@@ -41,7 +41,10 @@ const PostAJob = () => {
       company: account?.company,
     };
     (async function () {
-      const { data } = await axios.post("http://localhost:5000/jobs", newJob);
+      const { data } = await axios.post(
+        "https://shrouded-taiga-82272.herokuapp.com/jobs",
+        newJob
+      );
       if (data.insertedId) {
         toast.success("Successfully updated!");
         navigate("/");
@@ -51,7 +54,7 @@ const PostAJob = () => {
   };
   return (
     <div className="flex justify-center items-center ">
-      <div class="card-body max-w-md flex justify-center items-center shadow-2xl bg-base-300 m-8 mt-24">
+      <div className="card-body max-w-md flex justify-center items-center shadow-2xl bg-base-300 m-8 mt-24">
         <p className="text-2xl">Post a Job</p>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col">
           {/* name */}

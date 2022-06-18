@@ -49,20 +49,24 @@ const Login = () => {
   }
 
   return (
-    <div class=" bg-base-200">
-      <div class="min-h-screen flex justify-center items-center lg:px-[10%]">
-        <img src="https://iili.io/Vk565Q.md.png" class=" rounded-lg " alt="" />
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div class="flex flex-col">
+    <div className=" bg-base-200">
+      <div className="min-h-screen flex justify-center items-center lg:px-[10%]">
+        <img
+          src="https://iili.io/Vk565Q.md.png"
+          className=" rounded-lg "
+          alt=""
+        />
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="flex flex-col">
             <FontAwesomeIcon
               className="text-base-300 text-9xl pt-6"
               icon={faUser}
             />
-            <form onSubmit={handleSubmit(onSubmit)} class="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               {/* email field */}
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Email</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Email</span>
                 </label>
                 <input
                   {...register("email", {
@@ -77,16 +81,16 @@ const Login = () => {
                   })}
                   type="text"
                   placeholder="Enter email"
-                  class="input input-bordered w-full "
+                  className="input input-bordered w-full "
                 />
-                <label class="label">
+                <label className="label">
                   {errors.email?.type === "required" && (
-                    <span class="label-text-alt text-error">
+                    <span className="label-text-alt text-error">
                       {errors.email.message}
                     </span>
                   )}
                   {errors.email?.type === "pattern" && (
-                    <span class="label-text-alt text-error">
+                    <span className="label-text-alt text-error">
                       {errors.email.message}
                     </span>
                   )}
@@ -94,9 +98,9 @@ const Login = () => {
               </div>
 
               {/* password field */}
-              <div class="form-control">
-                <label class="label">
-                  <span class="label-text">Password</span>
+              <div className="form-control">
+                <label className="label">
+                  <span className="label-text">Password</span>
                 </label>
                 <input
                   {...register("password", {
@@ -111,24 +115,24 @@ const Login = () => {
                   })}
                   type="password"
                   placeholder="Enter password"
-                  class="input input-bordered w-full "
+                  className="input input-bordered w-full "
                 />
-                <label class="label">
+                <label className="label">
                   {errors.password?.type === "required" && (
-                    <span class="label-text-alt text-error">
+                    <span className="label-text-alt text-error">
                       {errors.password.message}
                     </span>
                   )}
                   {errors.password?.type === "minLength" && (
-                    <span class="label-text-alt text-error">
+                    <span className="label-text-alt text-error">
                       {errors.password.message}
                     </span>
                   )}
                 </label>
               </div>
 
-              <div class="form-control mt-6">
-                <button class="btn bg-gradient-to-r border-0 text-white from-primary to-secondary">
+              <div className="form-control mt-6">
+                <button className="btn bg-gradient-to-r border-0 text-white from-primary to-secondary">
                   Login
                 </button>
                 <p className="text-center">

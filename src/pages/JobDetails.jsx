@@ -16,7 +16,7 @@ const JobDetails = () => {
   useEffect(() => {
     (async function () {
       const { data } = await axios.get(
-        `http://localhost:5000/account/${user?.email}`
+        `https://shrouded-taiga-82272.herokuapp.com/account/${user?.email}`
       );
 
       setAccount(data);
@@ -26,7 +26,9 @@ const JobDetails = () => {
   const [job, setJob] = useState({});
   useEffect(() => {
     (async function () {
-      const { data } = await axios.get(`http://localhost:5000/jobs/${id}`);
+      const { data } = await axios.get(
+        `https://shrouded-taiga-82272.herokuapp.com/jobs/${id}`
+      );
       setJob(data);
     })();
   }, [id]);
@@ -58,7 +60,7 @@ const JobDetails = () => {
     };
     (async function () {
       const { data } = await axios.post(
-        "http://localhost:5000/applications",
+        "https://shrouded-taiga-82272.herokuapp.com/applications",
         applicant
       );
       console.log(data);
@@ -71,9 +73,9 @@ const JobDetails = () => {
 
   return (
     <div>
-      <div class="card mt-24 lg:mx-[10%] bg-base-300 shadow-3xl">
-        <div class="card-body">
-          <h2 class="card-title">{job_title}</h2>
+      <div className="card mt-24 lg:mx-[10%] bg-base-300 shadow-3xl">
+        <div className="card-body">
+          <h2 className="card-title">{job_title}</h2>
           <p>{company}</p>
           <p>{date}</p>
           <div className="divider" />
@@ -85,10 +87,10 @@ const JobDetails = () => {
           <p className="text-2xl">About Company</p>
           <p>website: {link}</p>
           <p>Email: {email}</p>
-          <div class="card-actions justify-end">
+          <div className="card-actions justify-end">
             <label
-              for="my-modal-3"
-              class="btn bg-gradient-to-r from-primary to-secondary text-white border-0 rounded-sm modal-button"
+              htmlFor="my-modal-3"
+              className="btn bg-gradient-to-r from-primary to-secondary text-white border-0 rounded-sm modal-button"
             >
               Apply{" "}
             </label>
@@ -99,18 +101,20 @@ const JobDetails = () => {
       {/* <!-- The button to open modal --> */}
 
       {/* <!-- Put this part before </body> tag --> */}
-      <input type="checkbox" id="my-modal-3" class="modal-toggle" />
-      <div class="modal">
-        <div class="modal-box relative">
+      <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+      <div className="modal">
+        <div className="modal-box relative">
           <label
-            for="my-modal-3"
-            class="btn btn-sm btn-circle absolute right-2 top-2"
+            htmlFor="my-modal-3"
+            className="btn btn-sm btn-circle absolute right-2 top-2"
           >
             ✕
           </label>
-          <h3 class="text-lg font-bold">Your Application </h3>
+          <h3 className="text-lg font-bold">Your Application </h3>
           <div className="divider" />
-          <p class="py-4">{account?.first_name + " " + account?.last_name}</p>
+          <p className="py-4">
+            {account?.first_name + " " + account?.last_name}
+          </p>
           <form
             onSubmit={handleSubmit(onSubmit)}
             className="flex flex-col gap-4"
@@ -135,7 +139,7 @@ const JobDetails = () => {
               )}
             </label>
 
-            <button class="btn bg-gradient-to-r from-primary to-secondary text-white border-0 rounded-sm modal-button w-[200px]">
+            <button className="btn bg-gradient-to-r from-primary to-secondary text-white border-0 rounded-sm modal-button w-[200px]">
               Submit
             </button>
           </form>

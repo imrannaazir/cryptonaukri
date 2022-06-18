@@ -10,14 +10,14 @@ const Applicants = () => {
   useEffect(() => {
     (async function () {
       const { data } = await axios.get(
-        `http://localhost:5000/account/${user?.email}`
+        `https://shrouded-taiga-82272.herokuapp.com/account/${user?.email}`
       );
 
       setAccount(data);
     })();
   }, [user?.email]);
 
-  const url = `http://localhost:5000/applications/${account?.website}`;
+  const url = `https://shrouded-taiga-82272.herokuapp.com/applications/${account?.website}`;
   const [applicants, setApplicants] = useState([]);
   useEffect(() => {
     (async function () {

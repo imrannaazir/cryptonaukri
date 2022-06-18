@@ -8,7 +8,9 @@ const FindAJob = () => {
   const [jobs, setJobs] = useState([]);
   useEffect(() => {
     (async function () {
-      const { data } = await axios.get("http://localhost:5000/jobs");
+      const { data } = await axios.get(
+        "https://shrouded-taiga-82272.herokuapp.com/jobs"
+      );
       setJobs(data);
     })();
   }, []);

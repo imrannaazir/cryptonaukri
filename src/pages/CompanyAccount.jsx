@@ -29,7 +29,7 @@ const CompanyAccount = () => {
     // post applicant to db
     (async function () {
       const { data } = await axios.post(
-        "http://localhost:5000/account",
+        "https://shrouded-taiga-82272.herokuapp.com/account",
         newCompany
       );
       console.log(data);

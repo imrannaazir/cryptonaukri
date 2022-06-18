@@ -13,8 +13,8 @@ const Applicant = ({
   },
 }) => {
   return (
-    <div class="card bg-base-300 shadow-3xl">
-      <div class="card-body">
+    <div className="card bg-base-300 shadow-3xl">
+      <div className="card-body">
         <p className="text-3xl">{first_name + " " + last_name}</p>
         <div className="divider"></div>
         <p className="text-xl text-secondary">Contact</p>

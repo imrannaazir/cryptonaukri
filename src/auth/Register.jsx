@@ -44,11 +44,15 @@ const Register = () => {
   }
 
   return (
-    <div class=" bg-base-200">
-      <div class="min-h-screen flex justify-center items-center lg:px-[10%]">
-        <img src="https://iili.io/Vk565Q.md.png" class=" rounded-lg " alt="" />
-        <div class="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <div class="card-body">
+    <div className=" bg-base-200">
+      <div className="min-h-screen flex justify-center items-center lg:px-[10%]">
+        <img
+          src="https://iili.io/Vk565Q.md.png"
+          className=" rounded-lg "
+          alt=""
+        />
+        <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
+          <div className="card-body">
             <p className="text-2xl text-white text-center">Register as</p>
             <form className="flex items-center gap-4 mb-6 justify-center">
               <input
@@ -63,7 +67,7 @@ const Register = () => {
                   setIsRadioSelected("student");
                 }}
               />
-              <label for="student">Student</label>
+              <label htmlFor="student">Student</label>
               <input
                 className="radio radio-secondary"
                 type="radio"
@@ -76,7 +80,7 @@ const Register = () => {
                   setIsRadioSelected("company");
                 }}
               />
-              <label for="company">Company</label>
+              <label htmlFor="company">Company</label>
             </form>
 
             {/* form */}

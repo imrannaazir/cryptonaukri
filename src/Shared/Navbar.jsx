@@ -12,7 +12,7 @@ const Navbar = () => {
   useEffect(() => {
     (async function () {
       const { data } = await axios.get(
-        `http://localhost:5000/account/${user?.email}`
+        `https://shrouded-taiga-82272.herokuapp.com/account/${user?.email}`
       );
 
       setAccount(data);
@@ -21,28 +21,28 @@ const Navbar = () => {
   console.log(account?.account_type);
 
   return (
-    <div class="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0 z-50">
-      <div class="navbar-start">
-        <div class="dropdown">
-          <label tabindex="0" class="btn btn-ghost lg:hidden">
+    <div className="navbar bg-black backdrop-blur-md lg:px-[10%] fixed top-0 z-50">
+      <div className="navbar-start">
+        <div className="dropdown">
+          <label tabIndex="0" className="btn btn-ghost lg:hidden">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              class="h-5 w-5"
+              className="h-5 w-5"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
             >
               <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
                 d="M4 6h16M4 12h8m-8 6h16"
               />
             </svg>
           </label>
           <ul
-            tabindex="0"
-            class="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
+            tabIndex="0"
+            className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52"
           >
             {account?.account_type === "applicants" ? (
               <li>
@@ -60,7 +60,7 @@ const Navbar = () => {
             )}
           </ul>
         </div>
-        <Link to="/" class="btn btn-ghost normal-case text-xl">
+        <Link to="/" className="btn btn-ghost normal-case text-xl">
           <img
             className="h-10"
             src="https://i.ibb.co/kQmGYgB/crypto-final-logo-png-14-1.png"
@@ -68,8 +68,8 @@ const Navbar = () => {
           />
         </Link>
       </div>
-      <div class="navbar-center hidden lg:flex">
-        <ul class="menu menu-horizontal p-0">
+      <div className="navbar-center hidden lg:flex">
+        <ul className="menu menu-horizontal p-0">
           {account?.account_type === "company" ? (
             <>
               <li>
@@ -86,13 +86,13 @@ const Navbar = () => {
           )}
         </ul>
       </div>
-      <div class="navbar-end flex gap-4">
+      <div className="navbar-end flex gap-4">
         {user ? (
-          <div class="dropdown dropdown-hover dropdown-end">
-            <label tabindex="0" class="">
-              <div class="avatar placeholder">
-                <div class="bg-neutral-focus text-neutral-content rounded-full w-12">
-                  <span class="text-3xl">
+          <div className="dropdown dropdown-hover dropdown-end">
+            <label tabIndex="0" className="">
+              <div className="avatar placeholder">
+                <div className="bg-neutral-focus text-neutral-content rounded-full w-12">
+                  <span className="text-3xl">
                     {account?.company?.slice(0, 1) ||
                       account?.first_name?.slice(0, 1)}
                   </span>
@@ -100,8 +100,8 @@ const Navbar = () => {
               </div>
             </label>
             <ul
-              tabindex="0"
-              class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
+              tabIndex="0"
+              className="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
             >
               <li>
                 <button
@@ -121,16 +121,16 @@ const Navbar = () => {
               Login
             </Link>
 
-            <div class="dropdown dropdown-hover dropdown-end">
+            <div className="dropdown dropdown-hover dropdown-end">
               <label
-                tabindex="0"
-                class="text-xl text-white bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md rounded-bl-3xl"
+                tabIndex="0"
+                className="text-xl text-white bg-gradient-to-r from-primary to-secondary py-2 px-4 rounded-md rounded-bl-3xl"
               >
                 Register
               </label>
               <ul
-                tabindex="0"
-                class="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
+                tabIndex="0"
+                className="dropdown-content menu p-2 shadow bg-base-300 rounded-box w-52"
               >
                 <li>
                   <Link to="/register/student">Student</Link>
